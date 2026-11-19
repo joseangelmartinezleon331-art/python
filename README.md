@@ -1,0 +1,16 @@
+# Lista negra de IPs simuladas (origenes maliciosos o bloqueados conocidos)
+ips_bloqueadas = ["192.168.1.100", "203.0.113.5", "45.33.32.156"]
+
+def simular_firewall(ip_origen, puerto):
+    print(f"Intento de conexión desde la IP: {ip_origen} hacia el puerto {puerto}")
+
+    if ip_origen in ips_bloqueadas:
+        print(" [BLOQUEADO] Tráfico denegado por reglas del Firewall.\n")
+        return False
+    else:
+        print(" [PERMITIDO] Conexión establecida exitosamente.\n")
+        return True
+
+# Casos de prueba
+simular_firewall("203.0.113.5", 80)  # IP en lista negra (bloqueada)
+simular_firewall("192.168.1.50", 443) # IP segura (permitida)
